@@ -1,8 +1,8 @@
 use std::env::args;
+use compress::Args;
 mod compress;
 
 fn main() {
-    use compress::Args;
     if args().len() != 3 {
         eprintln!("Usage: `source` `target`");
         return;
