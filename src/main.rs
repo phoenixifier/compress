@@ -1,5 +1,7 @@
 use std::env::args;
-use compress::Args;
+use args::Args;
+use compress::Compressor;
+mod args;
 mod compress;
 
 fn main() {
@@ -12,6 +14,8 @@ fn main() {
         input_arg: args().nth(1).unwrap().to_string(),
         output_arg: args().nth(2).unwrap().to_string()
     };
-    arguments.copy_contents().expect("Failed to copy");
-    arguments.finished()
+
+    args::copy_contents(&arguments).expect("Failed to copy");
+    let c = Compressor::new(arguments);
+    c.finished();
 }
